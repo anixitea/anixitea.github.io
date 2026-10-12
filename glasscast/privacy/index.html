@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GlassCast Privacy Policy</title>
+  <meta name="description" content="How GlassCast handles your information.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="page policy">
+    <a class="back" href="/glasscast/">GlassCast</a>
+
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated October 12, 2026</p>
+
+    <section class="panel">
+      <p>GlassCast is a podcast app for Android made by one person, theglassmaker. This page explains what the app does with your information.</p>
+      <p><strong>The short version:</strong> GlassCast has no server of its own and no analytics or ads. What you listen to stays on your phone, or in your own Google account if you choose to sign in. I never receive it.</p>
+    </section>
+
+    <section class="panel">
+      <h2>What stays on your phone</h2>
+      <p>The shows you follow, your episodes, where you are in each one, your bookmarks and their notes, your queue, your downloads and your settings are all stored on your device. Uninstalling the app deletes them.</p>
+      <p>If the app crashes or stops responding, a report is saved on your phone. It's only sent anywhere if you choose to share it yourself from Settings, using whichever app you pick.</p>
+      <p>A backup file is saved wherever you choose to save it.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Who the app talks to</h2>
+      <ul>
+        <li><strong>Podcast publishers.</strong> To get show feeds, artwork and the episodes you play or download, the app asks the servers those shows are published on. Like any website, they can see your IP address.</li>
+        <li><strong>Apple's podcast directory.</strong> When you search for a show or open Discover, the app asks Apple's public iTunes Search API for results. It sends your search words, or asks for the top shows in a category. Discover picks the categories on your phone from the shows you follow; your list of shows isn't sent.</li>
+        <li><strong>GitHub.</strong> The app checks GitHub for new versions of GlassCast and downloads updates from there.</li>
+        <li><strong>gPodder or Nextcloud, only if you set it up.</strong> If you turn on sync, the app sends your subscriptions and episode progress to the server you choose, signed in with the details you enter. Your password is kept encrypted on your phone.</li>
+        <li><strong>Cast devices.</strong> When you cast, the episode's address and details go to the Chromecast or Google TV you choose.</li>
+        <li><strong>Google, only if you sign in.</strong> See below.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Sign in with Google</h2>
+      <p>Signing in is optional. It keeps your library the same on every phone you use.</p>
+      <h3>What GlassCast asks Google for</h3>
+      <p>One permission: <code>https://www.googleapis.com/auth/drive.appdata</code>, shown by Google as "See, create, and delete its own configuration data in your Google Drive". It lets GlassCast use a hidden folder of its own in your Google Drive. GlassCast can't see, open or change any of your other files.</p>
+      <h3>What's stored there</h3>
+      <p>One file with the shows you follow (their feed addresses, and when you followed or unfollowed them), which episodes you've played and where you are in them, your bookmarks and their notes, your queue, and the app's settings. It's in your Google account, not on a server of mine.</p>
+      <h3>Your name, email address and photo</h3>
+      <p>The app reads these from your Google account so Settings can show which account you're signed in with. They stay on your phone.</p>
+      <h3>How it's used</h3>
+      <ul>
+        <li>Only to keep your library in sync between your devices.</li>
+        <li>It isn't sold, shared or given to anyone, and it isn't used for advertising or to train AI models.</li>
+        <li>Nobody reads it. I have no way to: it's in your account, and only the app on your phone opens it.</li>
+      </ul>
+      <p>GlassCast's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+      <h3>Signing out and deleting</h3>
+      <ul>
+        <li>Sign out in Settings to remove GlassCast's access to your Google account. Your library stays on your phone, and the copy in your Drive stays there for the next time you sign in.</li>
+        <li>To delete that copy, open Google Drive on the web, go to Settings, then Manage apps, find GlassCast, and choose Delete hidden app data.</li>
+        <li>You can also remove GlassCast's access at any time from <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Children</h2>
+      <p>GlassCast isn't made for children under 13, and it doesn't knowingly collect information from them.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Changes and contact</h2>
+      <p>If this policy changes, the new version will be posted on this page with a new date.</p>
+      <p>Questions? Open an issue on <a href="https://github.com/anixitea/GlassCast-for-Android/issues">GlassCast's GitHub page</a>.</p>
+    </section>
+
+    <footer>
+      <a href="/glasscast/">GlassCast</a><span class="dot">·</span><a href="https://buymeacoffee.com/theglassmaker">Buy me a coffee</a>
+    </footer>
+  </main>
+</body>
+</html>
