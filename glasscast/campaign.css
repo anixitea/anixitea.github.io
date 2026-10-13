@@ -185,13 +185,115 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .also { margin-top: 18px; color: var(--ink-3); font-size: 15px; }
 
 footer {
-  padding: 72px 0 56px;
+  padding: 72px 0 120px;
   text-align: center;
   color: var(--ink-3);
   font-size: 15px;
 }
 footer a { color: var(--ink-2); font-weight: 600; }
 footer .dot { margin: 0 8px; }
+
+/* ---- the mini player: a card at rest, a bubble while you scroll down ----
+   Pale, as the app's card is over a dark page. mini.js moves it. */
+.mini {
+  --mini-surface: #3c244c;
+  --mini-button: #d7b5ee;
+  --mini-ink: #16141a;
+  position: fixed;
+  z-index: 40;
+  right: max(20px, calc(50% - 580px));
+  bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  width: min(400px, calc(100% - 40px));
+  height: 68px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.mini.ready { opacity: 1; }
+.mini-bg, .mini-shadow, .mini-art, .mini-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+}
+.mini-bg {
+  width: 100%;
+  height: 68px;
+  border-radius: 30px;
+  background: var(--mini-button);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.mini-shadow {
+  border-radius: 50%;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+}
+.mini-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  color: var(--mini-ink);
+  pointer-events: auto;
+}
+.mini-card:hover { text-decoration: none; }
+.mini-card:focus-visible { outline: 2px solid var(--mini-button); outline-offset: 4px; }
+.mini-row {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 10px 0 72px;
+}
+.mini-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.mini-title, .mini-sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mini-title { font-size: 15px; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; }
+.mini-sub { font-size: 13px; line-height: 1.3; opacity: 0.7; }
+.mini-wave {
+  display: block;
+  width: 100%;
+  height: 8px;
+  margin-top: 5px;
+  overflow: visible;
+  color: var(--mini-surface);
+}
+.mini-wave .played, .mini-wave .rest { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; }
+.mini-wave .rest { opacity: 0.32; }
+.mini-wave .dot { fill: currentColor; opacity: 0.55; }
+.mini-button {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background: var(--mini-surface);
+  color: var(--mini-button);
+  transition: border-radius 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.mini-card:hover .mini-button { border-radius: 15px; }
+.mini-button svg { width: 24px; height: 24px; }
+.mini-art { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; }
+.mini-ring { display: none; overflow: visible; }
+.mini-ring path { fill: none; stroke-width: 3.5; }
+.mini-ring .track { stroke: var(--mini-surface); }
+.mini-ring .arc { stroke: var(--mini-button); stroke-linecap: round; }
+.mini-bubble {
+  position: absolute;
+  right: 0;
+  top: 22px;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.mini-bubble[hidden] { display: none; }
+.mini-bubble:focus-visible { outline: 2px solid var(--mini-button); outline-offset: 4px; }
+@media print { .mini { display: none; } }
 
 @media (max-width: 960px) {
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
