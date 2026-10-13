@@ -182,6 +182,9 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .install { text-align: center; padding: 96px 0 0; }
 .install .intro { margin-left: auto; margin-right: auto; }
 .install .actions { justify-content: center; }
+.store-badge { display: inline-block; margin-top: 20px; border-radius: 10px; }
+.store-badge img { display: block; width: 161px; height: 48px; }
+.store-badge:hover { filter: brightness(1.15); }
 .also { margin-top: 18px; color: var(--ink-3); font-size: 15px; }
 
 footer {
