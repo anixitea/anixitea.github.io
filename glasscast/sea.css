@@ -1,0 +1,262 @@
+/* Sea Glass, the app's second look, on the page. The switch in the top bar
+   sets <html data-look="sea">; everything here hangs off that, so the
+   campaign's dark look (campaign.css) is untouched when it's off.
+
+   As in the app: paper ground, the covers' colors washed across it, titles
+   in Newsreader, and the buttons as pieces of frosted sea glass. The glass
+   pieces lying on the page are rendered with the app's own glass shader. */
+
+/* ---- the switch (both looks) ---- */
+.look-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--rim);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ink-2);
+  font: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.look-switch:hover { color: var(--ink); }
+.look-switch:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.look-track {
+  position: relative;
+  flex: none;
+  width: 38px;
+  height: 22px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.16);
+  transition: background-color 0.3s ease;
+}
+.look-bead {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.look-switch[aria-checked="true"] .look-bead { transform: translateX(16px); }
+
+/* Glass lying on the page: only in Sea Glass. */
+.pebble {
+  position: absolute;
+  z-index: 0;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transform: translateY(16px) scale(0.94);
+  transition: opacity 0.6s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.pebble.lilac { width: 148px; }
+.pebble.lagoon { width: 126px; }
+.pebble.rose { width: 118px; }
+.pebble.amber { width: 110px; }
+.pebble.mint { width: 104px; }
+
+/* The circle that spreads from the switch when the look changes. */
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
+/* ==================================================================== */
+
+html[data-look="sea"] {
+  --ground: #f4f5f0;
+  --card: #fbfaf5;
+  --rim: #dce2d8;
+  --ink: #233c37;
+  --ink-2: rgba(35, 60, 55, 0.78);
+  --ink-3: rgba(35, 60, 55, 0.55);
+  --accent: #71388b;
+  /* Clear glass (the app's fog), unless a piece says otherwise. */
+  --g-body: #e6e6de;
+  --g-edge: #ffffff;
+  --g-ink: #233c37;
+  color-scheme: light;
+}
+html[data-look="sea"] .pebble { opacity: 1; transform: none; }
+
+/* Washes of the covers' colors instead of dark blurs. */
+html[data-look="sea"] .glow {
+  filter: blur(80px) saturate(1.5) brightness(1.18) contrast(0.85);
+  opacity: 0.34;
+}
+html[data-look="sea"] .hero .glow { opacity: 0.32; }
+html[data-look="sea"] .hero::after {
+  background: linear-gradient(to bottom, rgba(244, 245, 240, 0), var(--ground));
+}
+html[data-look="sea"] .phone { filter: drop-shadow(0 30px 40px rgba(30, 43, 40, 0.16)) drop-shadow(0 4px 8px rgba(30, 43, 40, 0.06)); }
+
+/* Titles in Newsreader, as in the app; everything else stays Figtree. */
+html[data-look="sea"] .hero h1,
+html[data-look="sea"] .section h2,
+html[data-look="sea"] .free h2,
+html[data-look="sea"] .install h2,
+html[data-look="sea"] .card h3 {
+  font-family: "Newsreader", "Figtree", Georgia, serif;
+  font-weight: 400;
+  font-optical-sizing: auto;
+}
+html[data-look="sea"] .hero h1 { font-size: clamp(52px, 6.6vw, 92px); line-height: 1; letter-spacing: -0.025em; }
+html[data-look="sea"] .section h2,
+html[data-look="sea"] .free h2,
+html[data-look="sea"] .install h2 { font-size: clamp(38px, 5vw, 62px); line-height: 1.04; letter-spacing: -0.02em; }
+html[data-look="sea"] .card h3 { font-size: 30px; line-height: 1.1; letter-spacing: -0.01em; }
+/* Korean has no Newsreader: Hangul stays in Pretendard, a touch lighter. */
+html[data-look="sea"] .ko .hero h1,
+html[data-look="sea"] .ko .section h2,
+html[data-look="sea"] .ko .free h2,
+html[data-look="sea"] .ko .install h2,
+html[data-look="sea"] .ko .card h3 {
+  font-family: "Newsreader", "Pretendard Variable", "Pretendard", system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+html[data-look="sea"] .ko .hero h1 { line-height: 1.16; }
+html[data-look="sea"] .ko .card h3 { line-height: 1.3; }
+
+html[data-look="sea"] .brand { color: var(--ink); }
+html[data-look="sea"] .card,
+html[data-look="sea"] .free { background: var(--card); border-color: var(--rim); }
+html[data-look="sea"] .card .glow { opacity: 0.3; }
+html[data-look="sea"] .free .glow { opacity: 0.26; }
+html[data-look="sea"] footer a { color: var(--ink); }
+
+/* ---- glass: a frosted pebble, lit from the top left, its own color
+   pooled in the shadow under it. Shape, light and shadow follow the app's
+   Pebble recipe; the frost is a fine grain over the body. */
+html[data-look="sea"] .button,
+html[data-look="sea"] .top nav a,
+html[data-look="sea"] .look-switch,
+html[data-look="sea"] .mini-button {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  color: var(--g-ink);
+  background:
+    radial-gradient(130% 120% at 26% 14%, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0) 44%),
+    radial-gradient(110% 80% at 60% 112%, var(--g-edge) 0%, rgba(255, 255, 255, 0) 60%),
+    linear-gradient(172deg, color-mix(in srgb, var(--g-body) 70%, #fff) 0%, var(--g-body) 52%, color-mix(in srgb, var(--g-body) 86%, #5f5a52) 100%);
+  box-shadow:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -3px 7px rgba(255, 255, 255, 0.45),
+    inset 0 0 0 1px color-mix(in srgb, var(--g-edge) 55%, transparent),
+    0 14px 22px -12px color-mix(in srgb, var(--g-body) 70%, #3d413f),
+    0 3px 6px -2px rgba(61, 65, 63, 0.16);
+  transition: transform 0.35s cubic-bezier(0.34, 1.5, 0.64, 1), filter 0.2s ease, box-shadow 0.3s ease;
+}
+html[data-look="sea"] .button::after,
+html[data-look="sea"] .top nav a::after,
+html[data-look="sea"] .look-switch::after,
+html[data-look="sea"] .mini-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+  pointer-events: none;
+}
+html[data-look="sea"] .button:hover,
+html[data-look="sea"] .top nav a:hover,
+html[data-look="sea"] .look-switch:hover { text-decoration: none; filter: brightness(1.03) saturate(1.05); transform: translateY(-1px); }
+/* A press: the piece gives a little and catches more light. */
+html[data-look="sea"] .button:active,
+html[data-look="sea"] .top nav a:active,
+html[data-look="sea"] .look-switch:active { transform: scale(0.95); filter: brightness(1.07); }
+
+/* Each piece worn a little differently. */
+html[data-look="sea"] .button { min-height: 56px; padding: 0 28px; border-radius: 30px 26px 29px 25px / 27px 31px 25px 29px; }
+html[data-look="sea"] .actions .button + .button { border-radius: 27px 31px 25px 30px / 30px 26px 29px 25px; }
+html[data-look="sea"] .top nav a { border-radius: 21px 18px 20px 17px / 18px 21px 17px 20px; }
+html[data-look="sea"] .look-switch { border-radius: 22px 19px 21px 18px / 19px 22px 18px 21px; }
+
+/* The app's own color for the main piece: GlassCast's purple, as glass. */
+html[data-look="sea"] .button.primary,
+html[data-look="sea"] .mini-button {
+  --g-body: #e1cde8;
+  --g-edge: #fbe8f7;
+  --g-ink: #71388b;
+}
+html[data-look="sea"] .button.primary { color: var(--g-ink); }
+
+/* The switch in Sea Glass: a groove in the paper with a bead of glass. */
+html[data-look="sea"] .look-track {
+  background: rgba(35, 60, 55, 0.07);
+  box-shadow: inset 0 1px 2px rgba(35, 60, 55, 0.14), inset 0 -1px 0 rgba(255, 255, 255, 0.7);
+}
+html[data-look="sea"] .look-bead {
+  background:
+    radial-gradient(120% 110% at 30% 20%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 50%),
+    linear-gradient(170deg, #f0e3f4, #e1cde8 60%, #d3bddb);
+  box-shadow: inset 0 1px 1px #fff, 0 3px 5px -1px rgba(113, 56, 139, 0.35), 0 1px 2px rgba(61, 65, 63, 0.2);
+  border-radius: 48% 52% 46% 54% / 54% 46% 52% 48%;
+}
+
+/* ---- placing the glass on the page ----
+   Behind the phone and under the hero's fade, beside it on the paper. */
+.hero-phone .pebble { z-index: -1; }
+.hero-phone .pebble.lilac { left: -34%; bottom: 96px; }
+.hero-phone .pebble.mint { right: -18%; top: 24px; }
+.free .pebble.amber { right: 28px; top: 26px; }
+/* Under the words wherever the glass and the words meet. */
+.free .pebble, .install .pebble { z-index: -1; }
+.install { position: relative; isolation: isolate; }
+.install .pebble.lagoon { left: 6%; top: 112px; }
+.install .pebble.rose { right: 7%; top: 196px; }
+
+/* ---- the mini player in Sea Glass: a paper card tinted with the purple,
+   the download a pebble, and the bubble the app's pebble (mini.js). ---- */
+html[data-look="sea"] .mini {
+  --mini-surface: #233c37;
+  --mini-button: #f2ebf3;
+  --mini-ink: #233c37;
+}
+html[data-look="sea"] .mini-bg {
+  box-shadow:
+    0 16px 34px -12px rgba(113, 56, 139, 0.32),
+    0 2px 6px rgba(30, 43, 40, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
+html[data-look="sea"] .mini-shadow { box-shadow: 0 12px 26px -6px rgba(113, 56, 139, 0.35); }
+html[data-look="sea"] .mini-title { font-family: "Newsreader", "Figtree", serif; font-weight: 500; font-size: 17px; letter-spacing: 0; }
+html[data-look="sea"] .mini-button { border-radius: 46% 54% 50% 50% / 54% 46% 54% 46%; }
+html[data-look="sea"] .mini-card:hover .mini-button { border-radius: 46% 54% 50% 50% / 54% 46% 54% 46%; filter: brightness(1.04); }
+html[data-look="sea"] .mini-ring .track { stroke: rgba(35, 60, 55, 0.16); }
+html[data-look="sea"] .mini-ring .arc { stroke: #233c37; }
+html[data-look="sea"] .mini-card:focus-visible,
+html[data-look="sea"] .mini-bubble:focus-visible { outline-color: #71388b; }
+
+@media (max-width: 760px) {
+  .hero-phone .pebble.lilac { left: 2%; bottom: 70px; width: 112px; }
+  .hero-phone .pebble.mint { right: 4%; top: 0; width: 84px; }
+  .install .pebble.lagoon { left: -10px; top: 60px; width: 92px; }
+  .install .pebble.rose { right: -6px; top: 210px; width: 88px; }
+  .free .pebble.amber { width: 84px; right: 14px; top: 14px; }
+}
+/* A phone's top bar fits the name, the switch and the language on one line. */
+@media (max-width: 480px) {
+  .top { gap: 10px; }
+  .brand { gap: 10px; font-size: 18px; }
+  .brand img { width: 34px; height: 34px; border-radius: 9px; }
+  .top nav { gap: 6px; flex-wrap: nowrap; }
+  .top nav a { padding: 6px 11px; font-size: 14px; }
+  .look-switch { gap: 7px; padding: 5px 6px 5px 11px; font-size: 14px; }
+  .look-track { width: 32px; height: 19px; }
+  .look-bead { width: 13px; height: 13px; }
+  .look-switch[aria-checked="true"] .look-bead { transform: translateX(13px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pebble, .look-bead, html[data-look="sea"] .button { transition: none; }
+}

@@ -21,14 +21,37 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/glasscast/campaign.css">
+  <link rel="stylesheet" href="/glasscast/sea.css">
+  <script>
+    // The look picked on an earlier visit (or ?look=sea in the address), set
+    // before the first paint so the page doesn't flash dark first. sea.js does
+    // the rest.
+    (function () {
+      var page = document.documentElement, asked = /[?&]look=(sea|original)\b/.exec(location.search), sea = false;
+      try {
+        if (asked) localStorage.setItem("glasscast-look", asked[1]);
+        sea = (asked ? asked[1] : localStorage.getItem("glasscast-look")) === "sea";
+      } catch (e) {
+        sea = !!asked && asked[1] === "sea";
+      }
+      if (!sea) return;
+      page.dataset.look = "sea";
+      var font = document.createElement("link");
+      font.rel = "stylesheet";
+      font.href = "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap";
+      font.setAttribute("data-sea-font", "");
+      document.head.appendChild(font);
+    })();
+  </script>
 </head>
 <body>
   <header class="hero">
-    <img class="glow" src="/glasscast/shots/player.webp" alt="" aria-hidden="true">
+    <img class="glow" src="/glasscast/shots/player.webp" data-sea="/glasscast/shots/sea/player.webp" alt="" aria-hidden="true">
     <div class="wrap">
       <div class="top">
         <a class="brand" href="/"><img src="/glasscast/icon.webp" alt="">GlassCast</a>
         <nav aria-label="Site">
+          <button class="look-switch" type="button" role="switch" aria-checked="false"><span>Sea Glass</span><span class="look-track" aria-hidden="true"><span class="look-bead"></span></span></button>
           <a class="wide-only" href="/glasscast/privacy/">Privacy</a>
           <a href="/glasscast/ko/" lang="ko" hreflang="ko">한국어</a>
         </nav>
@@ -46,7 +69,9 @@
           </div>
         </div>
         <div class="hero-phone">
-          <img class="phone" src="/glasscast/shots/player.webp" alt="GlassCast's player, colored by the cover of the episode playing" width="800" height="1670">
+          <img class="pebble lilac" src="/glasscast/pebbles/lilac.webp" alt="" aria-hidden="true" width="148" height="150" loading="lazy">
+          <img class="pebble mint" src="/glasscast/pebbles/mint.webp" alt="" aria-hidden="true" width="104" height="114" loading="lazy">
+          <img class="phone" src="/glasscast/shots/player.webp" data-sea="/glasscast/shots/sea/player.webp" alt="GlassCast's player, colored by the cover of the episode playing" width="800" height="1670">
         </div>
       </div>
     </div>
@@ -58,63 +83,64 @@
       <p class="intro">I made GlassCast after moving over from an iPhone, because I couldn't find an Android podcast app I actually liked using.</p>
       <div class="cards">
         <article class="card">
-          <img class="glow" src="/glasscast/shots/latest.webp" alt="" aria-hidden="true">
+          <img class="glow" src="/glasscast/shots/latest.webp" data-sea="/glasscast/shots/sea/latest.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>Every new episode, in one list.</h3>
             <p>Hide what you've played and see what's downloaded.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/latest.webp" alt="The Latest tab, with new episodes from every show you follow" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/latest.webp" data-sea="/glasscast/shots/sea/latest.webp" alt="The Latest tab, with new episodes from every show you follow" width="600" height="1252" loading="lazy">
         </article>
         <article class="card">
-          <img class="glow" src="/glasscast/shots/player.webp" alt="" aria-hidden="true">
+          <img class="glow" src="/glasscast/shots/player.webp" data-sea="/glasscast/shots/sea/player.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>Listen your way.</h3>
             <p>Speed, Skip silence, Boost voices and a sleep timer that a shake restarts.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/speed.webp" alt="The Speed and sound panel with Skip silence and Boost voices" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/speed.webp" data-sea="/glasscast/shots/sea/speed.webp" alt="The Speed and sound panel with Skip silence and Boost voices" width="600" height="1252" loading="lazy">
         </article>
         <article class="card">
-          <img class="glow" src="/glasscast/shots/discover.webp" alt="" aria-hidden="true">
+          <img class="glow" src="/glasscast/shots/discover.webp" data-sea="/glasscast/shots/sea/discover.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>Find your next favorite show.</h3>
             <p>Picks from the genres you love, worked out on your phone.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/discover.webp" alt="The Discover tab with picks from your favorite genres" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/discover.webp" data-sea="/glasscast/shots/sea/discover.webp" alt="The Discover tab with picks from your favorite genres" width="600" height="1252" loading="lazy">
         </article>
         <article class="card">
-          <img class="glow" src="/glasscast/shots/show.webp" alt="" aria-hidden="true">
+          <img class="glow" src="/glasscast/shots/show.webp" data-sea="/glasscast/shots/sea/show.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>Everything about a show.</h3>
             <p>Notes, chapters and transcripts, and new episodes that download on Wi-Fi by themselves.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/show.webp" alt="A show's page, tinted by its cover" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/show.webp" data-sea="/glasscast/shots/sea/show.webp" alt="A show's page, tinted by its cover" width="600" height="1252" loading="lazy">
         </article>
         <article class="card">
-          <img class="glow" src="/glasscast/shots/library.webp" alt="" aria-hidden="true">
+          <img class="glow" src="/glasscast/shots/library.webp" data-sea="/glasscast/shots/sea/library.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>Your library, beautifully kept.</h3>
             <p>Every show you follow, searchable in one place.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/library.webp" alt="The library of shows you follow" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/library.webp" data-sea="/glasscast/shots/sea/library.webp" alt="The library of shows you follow" width="600" height="1252" loading="lazy">
         </article>
         <article class="card">
           <img class="glow" src="/glasscast/icon.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>Make it yours.</h3>
-            <p>Light or dark, with your own accent color.</p>
+            <p>Two looks, the original and Sea Glass. Light or dark, with your own accent color.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/settings.webp" alt="Settings, with light and dark themes and a custom color" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/settings.webp" data-sea="/glasscast/shots/sea/settings.webp" alt="Settings, with light and dark themes and a custom color" data-sea-alt="Settings, with the original and Sea Glass looks" width="600" height="1252" loading="lazy">
         </article>
       </div>
     </section>
 
     <section class="free">
-      <img class="glow" src="/glasscast/shots/library.webp" alt="" aria-hidden="true">
+      <img class="pebble amber" src="/glasscast/pebbles/amber.webp" alt="" aria-hidden="true" width="110" height="120" loading="lazy">
+      <img class="glow" src="/glasscast/shots/library.webp" data-sea="/glasscast/shots/sea/library.webp" alt="" aria-hidden="true">
       <h2>Free. No ads.<br>No account.</h2>
       <div class="columns">
         <div>
           <h3>Your data</h3>
-          <p>What you listen to stays on your phone, and nothing about it is sent to me. If you sign in with Google, your shows, progress and bookmarks follow you to every phone, kept in a hidden folder in your own Google Drive. There's no GlassCast server. The <a href="/glasscast/privacy/">privacy policy</a> has the details.</p>
+          <p>What you listen to stays on your phone, and nothing about it is sent to me. If you sign in with Google, your shows, progress and bookmarks follow you to every phone and TV, kept in a hidden folder in your own Google Drive. There's no GlassCast server. The <a href="/glasscast/privacy/">privacy policy</a> has the details.</p>
         </div>
         <div>
           <h3>Also in GlassCast</h3>
@@ -124,6 +150,8 @@
     </section>
 
     <section class="install">
+      <img class="pebble lagoon" src="/glasscast/pebbles/lagoon.webp" alt="" aria-hidden="true" width="126" height="132" loading="lazy">
+      <img class="pebble rose" src="/glasscast/pebbles/rose.webp" alt="" aria-hidden="true" width="118" height="126" loading="lazy">
       <h2>Get GlassCast.</h2>
       <p class="intro">Download the APK and open it on your phone or Google TV. The app checks for updates itself, so you only need to install it once.</p>
       <div class="actions">
@@ -158,6 +186,7 @@
     <svg class="mini-ring" aria-hidden="true"><path class="track"/><path class="arc"/></svg>
     <button class="mini-bubble" type="button" aria-label="Show the download" hidden></button>
   </div>
+  <script src="/glasscast/sea.js" defer></script>
   <script src="/glasscast/mini.js" defer></script>
 </body>
 </html>

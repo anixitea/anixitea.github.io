@@ -45,6 +45,39 @@
     return d + "Z";
   }
 
+  // Sea Glass (sea.js): the bubble is the app's pebble instead, the same
+  // outline as GlassContour.kt with the bubble's seed (31) and tumble
+  // (0.075): a circle whose edge wanders by two slow waves. It turns over
+  // once every 7 seconds while it's a bubble, as the app's does while playing.
+  const SEA_SEED = 31, SEA_TUMBLE = 0.075, SEA_BREATH = 7;
+  const page = document.documentElement;
+  const sea = () => page.dataset.look === "sea";
+  function mulberry(seed) {
+    let state = seed | 0;
+    return () => {
+      state = (state + 0x6d2b79f5) | 0;
+      let t = state;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= (t + Math.imul(t ^ (t >>> 7), t | 61)) | 0;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  const SEA_PHASES = (() => { const r = mulberry(SEA_SEED); return [r() * 2 * Math.PI, r() * 2 * Math.PI]; })();
+  function pebble(w, h, turn, inset, tumble, steps = 96) {
+    const cx = w / 2, cy = h / 2;
+    const amp = Math.min(w, h) * tumble;
+    const half = Math.min(w, h) / 2 - amp * 0.95 - inset;
+    const p0 = SEA_PHASES[0] + turn * Math.PI;
+    const p1 = SEA_PHASES[1] + (turn * 2 * Math.PI) / 3;
+    let d = "";
+    for (let i = 0; i <= steps; i++) {
+      const t = -Math.PI / 2 + (2 * Math.PI * i) / steps;
+      const r = half + amp * (Math.sin(2 * t + p0) * 0.75 + Math.sin(3 * t + p1) * 0.2);
+      d += (i ? "L" : "M") + (cx + r * Math.cos(t)).toFixed(2) + " " + (cy + r * Math.sin(t)).toFixed(2);
+    }
+    return d + "Z";
+  }
+
   // Where everything is at any point along the morph (MorphMetrics.frame).
   function frame(p, width) {
     const a = clamp(p / 0.55);
@@ -130,6 +163,8 @@
     const f = frame(p, width);
     const prog = progress();
     const rotation = (spin / 2.4) * ((2 * Math.PI) / LOBES);
+    const glass = sea();
+    const turn = spin / SEA_BREATH;
 
     // The container: card, then pill, then circle, fading as it becomes the bubble.
     bg.style.opacity = f.bgAlpha;
@@ -155,7 +190,10 @@
       art.style.borderRadius = ART_CORNER + (f.art.s / 2 - ART_CORNER) * (f.b * 2) + "px";
     } else {
       art.style.borderRadius = "0";
-      art.style.clipPath = `path("${cookie(f.art.s, f.art.s, rotation, 0, DEPTH * (f.b - 0.5) * 2)}")`;
+      const grow = (f.b - 0.5) * 2;
+      art.style.clipPath = `path("${glass
+        ? pebble(f.art.s, f.art.s, turn, 0, SEA_TUMBLE * grow)
+        : cookie(f.art.s, f.art.s, rotation, 0, DEPTH * grow)}")`;
     }
 
     shadow.style.opacity = f.b;
@@ -164,12 +202,16 @@
 
     // The ring, tracing the bubble's scalloped edge.
     if (f.ringAlpha > 0) {
-      ring.style.display = "";
+      // "block", not "": clearing it hands the ring back to the stylesheet's
+      // display: none, and the ring never showed.
+      ring.style.display = "block";
       ring.style.opacity = f.ringAlpha;
       ring.style.transform = `translate(${f.rect.x}px, ${f.rect.y}px)`;
       ring.setAttribute("width", f.rect.w);
       ring.setAttribute("height", f.rect.h);
-      const d = cookie(f.rect.w, f.rect.h, rotation, STROKE / 2, DEPTH);
+      const d = glass
+        ? pebble(f.rect.w, f.rect.h, turn, STROKE / 2, SEA_TUMBLE)
+        : cookie(f.rect.w, f.rect.h, rotation, STROKE / 2, DEPTH);
       track.setAttribute("d", d);
       arc.setAttribute("d", d);
       const len = arc.getTotalLength();
@@ -244,6 +286,7 @@
     kick();
   }
   addEventListener("resize", measure);
+  addEventListener("glasscast:look", kick);
   if (window.ResizeObserver) new ResizeObserver(measure).observe(wave);
 
   // Arriving partway down the page (a link, or coming back), start as the bubble.

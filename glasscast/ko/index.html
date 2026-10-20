@@ -23,14 +23,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="/glasscast/campaign.css">
+  <link rel="stylesheet" href="/glasscast/sea.css">
+  <script>
+    // The look picked on an earlier visit (or ?look=sea in the address), set
+    // before the first paint so the page doesn't flash dark first. sea.js does
+    // the rest.
+    (function () {
+      var page = document.documentElement, asked = /[?&]look=(sea|original)\b/.exec(location.search), sea = false;
+      try {
+        if (asked) localStorage.setItem("glasscast-look", asked[1]);
+        sea = (asked ? asked[1] : localStorage.getItem("glasscast-look")) === "sea";
+      } catch (e) {
+        sea = !!asked && asked[1] === "sea";
+      }
+      if (!sea) return;
+      page.dataset.look = "sea";
+      var font = document.createElement("link");
+      font.rel = "stylesheet";
+      font.href = "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap";
+      font.setAttribute("data-sea-font", "");
+      document.head.appendChild(font);
+    })();
+  </script>
 </head>
 <body class="ko">
   <header class="hero">
-    <img class="glow" src="/glasscast/shots/player.webp" alt="" aria-hidden="true">
+    <img class="glow" src="/glasscast/shots/player.webp" data-sea="/glasscast/shots/sea/player.webp" alt="" aria-hidden="true">
     <div class="wrap">
       <div class="top">
         <a class="brand latin" href="/"><img src="/glasscast/icon.webp" alt="">GlassCast</a>
         <nav aria-label="사이트">
+          <button class="look-switch" type="button" role="switch" aria-checked="false"><span>씨글라스</span><span class="look-track" aria-hidden="true"><span class="look-bead"></span></span></button>
           <a class="wide-only" href="/glasscast/privacy/">개인정보 처리방침</a>
           <a class="latin" href="/glasscast/" lang="en" hreflang="en">English</a>
         </nav>
@@ -48,7 +71,9 @@
           </div>
         </div>
         <div class="hero-phone">
-          <img class="phone" src="/glasscast/shots/player.webp" alt="커버 색을 입은 GlassCast 플레이어" width="800" height="1670">
+          <img class="pebble lilac" src="/glasscast/pebbles/lilac.webp" alt="" aria-hidden="true" width="148" height="150" loading="lazy">
+          <img class="pebble mint" src="/glasscast/pebbles/mint.webp" alt="" aria-hidden="true" width="104" height="114" loading="lazy">
+          <img class="phone" src="/glasscast/shots/player.webp" data-sea="/glasscast/shots/sea/player.webp" alt="커버 색을 입은 GlassCast 플레이어" width="800" height="1670">
         </div>
       </div>
     </div>
@@ -60,63 +85,64 @@
       <p class="intro">아이폰에서 안드로이드로 옮긴 뒤, 마음에 드는 팟캐스트 앱을 찾지 못해 직접 만들었어요.</p>
       <div class="cards">
         <article class="card">
-          <img class="glow" src="/glasscast/shots/latest.webp" alt="" aria-hidden="true">
+          <img class="glow" src="/glasscast/shots/latest.webp" data-sea="/glasscast/shots/sea/latest.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>새 에피소드를 한 목록에.</h3>
             <p>들은 에피소드는 숨기고, 다운로드한 에피소드는 한눈에.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/latest.webp" alt="구독한 모든 프로그램의 새 에피소드가 모인 최신 탭" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/latest.webp" data-sea="/glasscast/shots/sea/latest.webp" alt="구독한 모든 프로그램의 새 에피소드가 모인 최신 탭" width="600" height="1252" loading="lazy">
         </article>
         <article class="card">
-          <img class="glow" src="/glasscast/shots/player.webp" alt="" aria-hidden="true">
+          <img class="glow" src="/glasscast/shots/player.webp" data-sea="/glasscast/shots/sea/player.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>원하는 방식으로 듣기.</h3>
             <p>재생 속도, 무음 건너뛰기, 음성 강조, 그리고 흔들면 다시 시작되는 취침 타이머.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/speed.webp" alt="무음 건너뛰기와 음성 강조가 있는 속도 및 사운드 패널" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/speed.webp" data-sea="/glasscast/shots/sea/speed.webp" alt="무음 건너뛰기와 음성 강조가 있는 속도 및 사운드 패널" width="600" height="1252" loading="lazy">
         </article>
         <article class="card">
-          <img class="glow" src="/glasscast/shots/discover.webp" alt="" aria-hidden="true">
+          <img class="glow" src="/glasscast/shots/discover.webp" data-sea="/glasscast/shots/sea/discover.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>다음 최애 팟캐스트를 찾아보세요.</h3>
             <p>즐겨 듣는 장르에서 골라 드려요. 추천은 휴대폰 안에서 만들어져요.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/discover.webp" alt="즐겨 듣는 장르의 추천이 보이는 둘러보기 탭" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/discover.webp" data-sea="/glasscast/shots/sea/discover.webp" alt="즐겨 듣는 장르의 추천이 보이는 둘러보기 탭" width="600" height="1252" loading="lazy">
         </article>
         <article class="card">
-          <img class="glow" src="/glasscast/shots/show.webp" alt="" aria-hidden="true">
+          <img class="glow" src="/glasscast/shots/show.webp" data-sea="/glasscast/shots/sea/show.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>프로그램의 모든 것, 한곳에서.</h3>
             <p>노트, 챕터, 대본까지. 새 에피소드는 Wi-Fi에서 알아서 받아 둬요.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/show.webp" alt="커버 색을 입은 프로그램 페이지" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/show.webp" data-sea="/glasscast/shots/sea/show.webp" alt="커버 색을 입은 프로그램 페이지" width="600" height="1252" loading="lazy">
         </article>
         <article class="card">
-          <img class="glow" src="/glasscast/shots/library.webp" alt="" aria-hidden="true">
+          <img class="glow" src="/glasscast/shots/library.webp" data-sea="/glasscast/shots/sea/library.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>내 보관함을 한눈에.</h3>
             <p>구독한 팟캐스트를 한곳에서 검색하고 정리하세요.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/library.webp" alt="구독한 팟캐스트가 모인 보관함" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/library.webp" data-sea="/glasscast/shots/sea/library.webp" alt="구독한 팟캐스트가 모인 보관함" width="600" height="1252" loading="lazy">
         </article>
         <article class="card">
           <img class="glow" src="/glasscast/icon.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>나만의 스타일로.</h3>
-            <p>라이트, 다크, 그리고 나만의 포인트 컬러.</p>
+            <p>오리지널과 씨글라스, 두 가지 모습. 라이트, 다크, 그리고 나만의 포인트 컬러.</p>
           </div>
-          <img class="phone" src="/glasscast/shots/settings.webp" alt="라이트와 다크 테마, 사용자 지정 색상이 있는 설정" width="600" height="1252" loading="lazy">
+          <img class="phone" src="/glasscast/shots/settings.webp" data-sea="/glasscast/shots/sea/settings.webp" alt="라이트와 다크 테마, 사용자 지정 색상이 있는 설정" data-sea-alt="오리지널과 씨글라스 모습을 고르는 설정" width="600" height="1252" loading="lazy">
         </article>
       </div>
     </section>
 
     <section class="free">
-      <img class="glow" src="/glasscast/shots/library.webp" alt="" aria-hidden="true">
+      <img class="pebble amber" src="/glasscast/pebbles/amber.webp" alt="" aria-hidden="true" width="110" height="120" loading="lazy">
+      <img class="glow" src="/glasscast/shots/library.webp" data-sea="/glasscast/shots/sea/library.webp" alt="" aria-hidden="true">
       <h2>무료. 광고 없음.<br>가입 필요 없음.</h2>
       <div class="columns">
         <div>
           <h3>내 데이터</h3>
-          <p>무엇을 듣는지는 내 휴대폰에만 남고, 저에게 전송되지 않아요. Google로 로그인하면 구독한 팟캐스트, 재생 위치, 북마크가 내 Google Drive의 숨겨진 폴더에 보관되어 어느 휴대폰에서든 이어져요. GlassCast 서버는 없어요. 자세한 내용은 <a href="/glasscast/privacy/">개인정보 처리방침</a>(영문)에서 볼 수 있어요.</p>
+          <p>무엇을 듣는지는 내 휴대폰에만 남고, 저에게 전송되지 않아요. Google로 로그인하면 구독한 팟캐스트, 재생 위치, 북마크가 내 Google Drive의 숨겨진 폴더에 보관되어 어느 휴대폰과 TV에서든 이어져요. GlassCast 서버는 없어요. 자세한 내용은 <a href="/glasscast/privacy/">개인정보 처리방침</a>(영문)에서 볼 수 있어요.</p>
         </div>
         <div>
           <h3>그 밖의 기능</h3>
@@ -126,6 +152,8 @@
     </section>
 
     <section class="install">
+      <img class="pebble lagoon" src="/glasscast/pebbles/lagoon.webp" alt="" aria-hidden="true" width="126" height="132" loading="lazy">
+      <img class="pebble rose" src="/glasscast/pebbles/rose.webp" alt="" aria-hidden="true" width="118" height="126" loading="lazy">
       <h2>GlassCast 시작하기.</h2>
       <p class="intro">APK를 내려받아 휴대폰이나 Google TV에서 열면 끝이에요. 업데이트는 앱이 알아서 확인하니 한 번만 설치하면 돼요.</p>
       <div class="actions">
@@ -160,6 +188,7 @@
     <svg class="mini-ring" aria-hidden="true"><path class="track"/><path class="arc"/></svg>
     <button class="mini-bubble" type="button" aria-label="다운로드 보기" hidden></button>
   </div>
+  <script src="/glasscast/sea.js" defer></script>
   <script src="/glasscast/mini.js" defer></script>
 </body>
 </html>
