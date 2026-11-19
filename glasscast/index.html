@@ -19,7 +19,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/glasscast/campaign.css">
   <link rel="stylesheet" href="/glasscast/sea.css">
   <script>
@@ -94,7 +94,7 @@
           <img class="glow" src="/glasscast/shots/player.webp" data-sea="/glasscast/shots/sea/player.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>Listen your way.</h3>
-            <p>Speed, Skip silence, Boost voices and a sleep timer that a shake restarts.</p>
+            <p>Speed, Skip silence, Boost voices, Skip ads, and a sleep timer that a shake restarts.</p>
           </div>
           <img class="phone" src="/glasscast/shots/speed.webp" data-sea="/glasscast/shots/sea/speed.webp" alt="The Speed and sound panel with Skip silence and Boost voices" width="600" height="1252" loading="lazy">
         </article>
@@ -117,8 +117,8 @@
         <article class="card">
           <img class="glow" src="/glasscast/shots/library.webp" data-sea="/glasscast/shots/sea/library.webp" alt="" aria-hidden="true">
           <div class="text">
-            <h3>Your library, beautifully kept.</h3>
-            <p>Every show you follow, searchable in one place.</p>
+            <h3>Your library, your way.</h3>
+            <p>Folders for your shows, with covers of your own, the count of new episodes on every cover, and a big or small grid.</p>
           </div>
           <img class="phone" src="/glasscast/shots/library.webp" data-sea="/glasscast/shots/sea/library.webp" alt="The library of shows you follow" width="600" height="1252" loading="lazy">
         </article>
@@ -126,10 +126,44 @@
           <img class="glow" src="/glasscast/icon.webp" alt="" aria-hidden="true">
           <div class="text">
             <h3>Make it yours.</h3>
-            <p>Two looks, the original and Sea Glass. Light or dark, with your own accent color.</p>
+            <p>Three looks: the original, Sea Glass and Glass. Light or dark, your own accent color, and fifteen app icons.</p>
           </div>
           <img class="phone" src="/glasscast/shots/settings.webp" data-sea="/glasscast/shots/sea/settings.webp" alt="Settings, with light and dark themes and a custom color" data-sea-alt="Settings, with the original and Sea Glass looks" width="600" height="1252" loading="lazy">
         </article>
+      </div>
+    </section>
+
+    <section class="glass-look" id="glass">
+      <img class="glow" src="/glasscast/shots/glass/player.webp" alt="" aria-hidden="true">
+      <h2>A third look: Glass.</h2>
+      <p>The tab bar, the mini player and the player's controls turn into real glass that bends what's behind it, with light catching the edges. Apple's layout and colors, set in Inter. Pick Frosted for a soft frost, or Liquid for clearer glass.</p>
+      <div class="glass-finish" aria-hidden="true"><span>Frosted</span><span>Liquid</span></div>
+      <div class="glass-phones">
+        <img class="phone side" src="/glasscast/shots/glass/library.webp" alt="Library in the Glass look, with Continue Listening and a glass tab bar" width="600" height="1252" loading="lazy">
+        <img class="phone" src="/glasscast/shots/glass/player.webp" alt="The player in the Glass look, with glass controls over the cover" width="800" height="1670" loading="lazy">
+        <img class="phone side" src="/glasscast/shots/glass/show.webp" alt="A show's page in the Glass look" width="600" height="1252" loading="lazy">
+      </div>
+    </section>
+
+    <section class="skip" id="skip-ads">
+      <img class="glow" src="/glasscast/shots/speed.webp" data-sea="/glasscast/shots/sea/speed.webp" alt="" aria-hidden="true">
+      <div>
+        <h2>Skips the ads<br>it's heard before.</h2>
+        <p>Turn on Skip ads and GlassCast goes through your downloaded episodes on your phone. When the same ad turns up in another episode or another show, it's marked on the progress line and skipped while you listen, with Undo if it got one wrong.</p>
+        <p class="note">No AI and no account, and nothing is uploaded. The first time a new ad runs, it plays.</p>
+      </div>
+      <div class="skip-demo" aria-hidden="true">
+        <div class="skip-toast"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 6.6v10.8c0 .8.9 1.3 1.6.8l7.2-5.4c.5-.4.5-1.2 0-1.6L5.6 5.8C4.9 5.3 4 5.8 4 6.6z"/><path d="M12 6.6v10.8c0 .8.9 1.3 1.6.8l7.2-5.4c.5-.4.5-1.2 0-1.6l-7.2-5.4c-.7-.5-1.6 0-1.6.8z"/></svg><span>Ad skipped</span><b>Undo</b></div>
+        <div class="skip-player">
+          <div class="skip-head"><span class="skip-cover"></span><span><strong>Deadline day, explained</strong><small>Box Score</small></span></div>
+          <div class="skip-line">
+            <span class="skip-played"></span>
+            <span class="skip-ad" style="left: 24%; width: 9%"></span>
+            <span class="skip-ad" style="left: 63%; width: 7%"></span>
+            <span class="skip-dot"></span>
+          </div>
+          <div class="skip-times"><span>16:12</span><span>-25:48</span></div>
+        </div>
       </div>
     </section>
 
@@ -140,11 +174,11 @@
       <div class="columns">
         <div>
           <h3>Your data</h3>
-          <p>What you listen to stays on your phone, and nothing about it is sent to me. If you sign in with Google, your shows, progress and bookmarks follow you to every phone and TV, kept in a hidden folder in your own Google Drive. There's no GlassCast server. The <a href="/glasscast/privacy/">privacy policy</a> has the details.</p>
+          <p>What you listen to stays on your phone, and nothing about it is sent to me. If you sign in with Google, your shows, folders, progress and bookmarks follow you to every phone and TV, kept as one file in your own Google Drive. There's no GlassCast server. The <a href="/glasscast/privacy/">privacy policy</a> has the details.</p>
         </div>
         <div>
           <h3>Also in GlassCast</h3>
-          <p>Bookmarks with notes, new episode alerts, downloads for offline listening, Chromecast and Google TV, Android Auto, gPodder and Nextcloud sync, OPML import and export, a home screen widget, and its own interface on Google TV.</p>
+          <p>Bookmarks with notes, a listening history with your week in numbers, a tag on episodes you've heard before, new episode alerts, downloads for offline listening, Chromecast and Google TV, Android Auto, gPodder and Nextcloud sync, OPML import and export, a home screen widget, a player made for foldables, and its own interface on Google TV.</p>
         </div>
       </div>
     </section>

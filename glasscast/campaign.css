@@ -133,14 +133,14 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---- feature cards ---- */
 .section { padding: 96px 0 0; }
-.section h2, .free h2, .install h2 {
+.section h2, .free h2, .skip h2, .install h2 {
   margin: 0 0 12px;
   font-size: clamp(34px, 4.6vw, 56px);
   line-height: 1.02;
   letter-spacing: -0.04em;
   font-weight: 800;
 }
-.ko .section h2, .ko .free h2, .ko .install h2 { line-height: 1.2; letter-spacing: -0.035em; }
+.ko .section h2, .ko .free h2, .ko .skip h2, .ko .install h2 { line-height: 1.2; letter-spacing: -0.035em; }
 .section .intro, .install .intro { margin: 0 0 36px; color: var(--ink-2); max-width: 36em; font-size: 19px; }
 
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
@@ -177,6 +177,193 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .columns h3 { margin: 0 0 8px; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
 .ko .columns h3 { letter-spacing: 0.02em; font-size: 15px; }
 .columns p { margin: 0; color: var(--ink-2); }
+
+/* ---- Skip ads (2.2): what it does, beside a small player skipping one.
+   The playhead runs, jumps over each marked ad, and the app's "Ad skipped"
+   pill drops in, as it does on the phone. Still for reduced motion. ---- */
+.skip {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  margin-top: 96px;
+  border-radius: 40px;
+  border: 1px solid var(--rim);
+  background: var(--card);
+  padding: clamp(32px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+.skip .glow { z-index: -1; opacity: 0.4; }
+.skip h2 { margin-bottom: 20px; }
+.skip p { margin: 0 0 14px; color: var(--ink-2); }
+.skip .note { margin: 0; color: var(--ink-3); font-size: 16px; }
+
+.skip-demo { position: relative; min-width: 0; padding-top: 60px; }
+.skip-player {
+  border-radius: 28px;
+  padding: 22px 22px 16px;
+  color: #fff;
+  background:
+    radial-gradient(70% 90% at 12% 8%, #ee7a4c 0%, rgba(238, 122, 76, 0) 70%),
+    radial-gradient(60% 80% at 92% 100%, #5e1f14 0%, rgba(94, 31, 20, 0) 70%),
+    #3a1912;
+  box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.55);
+}
+.skip-head { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.skip-cover {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(150deg, #ffb27a, #d9480f);
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.5);
+}
+.skip-head span { min-width: 0; }
+.skip-head strong { display: block; font-size: 17px; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.skip-head small { display: block; font-size: 14px; color: rgba(255, 255, 255, 0.72); }
+.skip-line { position: relative; height: 22px; margin-top: 22px; }
+.skip-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.26);
+}
+.skip-played { position: absolute; left: 0; top: 9px; height: 4px; width: 40%; border-radius: 2px; background: #fff; animation: skip-played 10s linear infinite; }
+.skip-ad { position: absolute; top: 7px; height: 8px; border-radius: 4px; background: #ffc061; }
+.skip-dot {
+  position: absolute;
+  top: 3px;
+  left: 40%;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  animation: skip-dot 10s linear infinite;
+}
+.skip-times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
+  font-variant-numeric: tabular-nums;
+}
+.skip-toast {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  padding: 7px 7px 7px 14px;
+  border-radius: 999px;
+  background: rgba(42, 41, 47, 0.96);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translate(-50%, 10px) scale(0.92);
+  animation: skip-toast 10s ease infinite;
+}
+.skip-toast svg { width: 18px; height: 18px; opacity: 0.85; }
+.skip-toast b { padding: 4px 10px; border-radius: 999px; color: #d7b4f8; }
+
+@keyframes skip-dot {
+  0% { left: 6%; }
+  28% { left: 24%; }
+  28.6% { left: 33%; }
+  66% { left: 63%; }
+  66.6% { left: 70%; }
+  96% { left: 88%; opacity: 1; }
+  99% { left: 88%; opacity: 0; }
+  100% { left: 6%; opacity: 0; }
+}
+@keyframes skip-played {
+  0% { width: 6%; }
+  28% { width: 24%; }
+  28.6% { width: 33%; }
+  66% { width: 63%; }
+  66.6% { width: 70%; }
+  96% { width: 88%; opacity: 1; }
+  99% { width: 88%; opacity: 0; }
+  100% { width: 6%; opacity: 0; }
+}
+@keyframes skip-toast {
+  0%, 28% { opacity: 0; transform: translate(-50%, 10px) scale(0.92); }
+  31%, 47% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  51%, 66.6% { opacity: 0; transform: translate(-50%, -6px) scale(0.96); }
+  69.6%, 85% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  89%, 100% { opacity: 0; transform: translate(-50%, -6px) scale(0.96); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skip-played, .skip-dot, .skip-toast { animation: none; }
+  .skip-toast { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* ---- Glass (2.0): the third look, shown in its own light. The panel is
+   Apple's grouped gray in both of the page's looks, set in Inter like the
+   app's Glass; three phones rise from its bottom edge, the player raised
+   in the middle. ---- */
+.glass-look {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  margin-top: 96px;
+  border-radius: 40px;
+  background: #f2f2f7;
+  color: #1c1c1e;
+  color-scheme: light;
+  padding: clamp(36px, 6vw, 72px) clamp(20px, 5vw, 64px) 0;
+  text-align: center;
+  font-family: "Inter", "Figtree", system-ui, -apple-system, sans-serif;
+}
+.glass-look .glow { z-index: -1; opacity: 0.22; filter: blur(110px) saturate(1.6) brightness(1.3); }
+.glass-look h2 {
+  margin: 0 0 14px;
+  font-family: "Inter", "Figtree", system-ui, sans-serif;
+  font-size: clamp(34px, 4.6vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+  color: #1c1c1e;
+}
+.ko .glass-look h2 { font-family: "Inter", "Pretendard Variable", "Pretendard", system-ui, sans-serif; line-height: 1.2; }
+.glass-look p { max-width: 34em; margin: 0 auto; color: rgba(60, 60, 67, 0.78); }
+.glass-finish {
+  display: inline-flex;
+  margin-top: 24px;
+  padding: 3px;
+  border-radius: 11px;
+  background: rgba(118, 118, 128, 0.14);
+  font-size: 15px;
+  font-weight: 600;
+}
+.glass-finish span { padding: 6px 18px; border-radius: 8px; color: #1c1c1e; }
+.glass-finish span:first-child { background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 0 0 0.5px rgba(0, 0, 0, 0.04); }
+.glass-phones {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.22fr) minmax(0, 1fr);
+  gap: clamp(10px, 2.4vw, 32px);
+  align-items: start;
+  max-width: 980px;
+  /* As tall as most of the middle phone: the panel's edge cuts them all. */
+  aspect-ratio: 1 / 0.62;
+  min-height: 0;
+  margin: clamp(32px, 4vw, 48px) auto 0;
+}
+.glass-phones .phone { filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.18)); }
+.glass-phones .phone.side { margin-top: 12%; }
 
 /* ---- install ---- */
 .install { text-align: center; padding: 96px 0 0; }
@@ -312,4 +499,7 @@ footer .dot { margin: 0 8px; }
   .columns { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .section, .install { padding-top: 72px; }
   .free { margin-top: 72px; border-radius: 28px; }
+  .skip { margin-top: 72px; border-radius: 28px; grid-template-columns: minmax(0, 1fr); }
+  .glass-look { margin-top: 72px; border-radius: 28px; }
+  .glass-phones { gap: 8px; }
 }
