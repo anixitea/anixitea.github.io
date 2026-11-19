@@ -16,7 +16,7 @@
     <a class="back" href="/glasscast/">GlassCast</a>
 
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated October 19, 2026</p>
+    <p class="updated">Last updated November 13, 2026</p>
 
     <section class="panel">
       <p>GlassCast is a podcast app for Android made by one person, theglassmaker. This page explains what the app does with your information.</p>
@@ -25,7 +25,9 @@
 
     <section class="panel">
       <h2>What stays on your phone</h2>
-      <p>The shows you follow, your episodes, where you are in each one, your bookmarks and their notes, your queue, your downloads and your settings are all stored on your device. Uninstalling the app deletes them.</p>
+      <p>The shows you follow and your folders, your episodes, where you are in each one, your bookmarks and their notes, your queue, your downloads, your listening history and the listening time History shows, and your settings are all stored on your device. Uninstalling the app deletes them.</p>
+      <p>If you turn on Skip ads, the app goes through the audio of your downloaded episodes on your device to find ads that repeat across episodes and shows. That happens entirely on your device, and nothing about it is sent anywhere.</p>
+      <p>If you give a folder a cover, the app keeps a small square copy of the picture you chose. It only reads the one picture you pick, with Android's photo picker, and has no access to the rest of your photos.</p>
       <p>If the app crashes or stops responding, a report is saved on your phone. It's only sent anywhere if you choose to share it yourself from Settings, using whichever app you pick.</p>
       <p>A backup file is saved wherever you choose to save it.</p>
     </section>
@@ -47,9 +49,10 @@
       <p>Signing in is optional. It keeps your library the same on every phone and TV you use.</p>
       <p>On Google TV you sign in with your phone: the TV shows a QR code and a short code, and you approve it there. The TV then keeps a sign-in token from Google in the app's private storage, so it can sync until you sign out.</p>
       <h3>What GlassCast asks Google for</h3>
-      <p>One permission: <code>https://www.googleapis.com/auth/drive.appdata</code>, shown by Google as "See, create, and delete its own configuration data in your Google Drive". It lets GlassCast use a hidden folder of its own in your Google Drive. GlassCast can't see, open or change any of your other files.</p>
+      <p>One permission: <code>https://www.googleapis.com/auth/drive.file</code>, shown by Google as "See, edit, create, and delete only the specific Google Drive files you use with this app". It lets GlassCast keep one file of its own in your Google Drive, called GlassCast library.json. GlassCast can't see, open or change any of your other files.</p>
+      <p>Versions 1.8 to 2.0 kept that file in a hidden folder instead, with the permission <code>https://www.googleapis.com/auth/drive.appdata</code>. If you gave that permission to one of those versions, the app reads the old file when there's no GlassCast library.json in your Drive yet, to move your library over. It never asks for that permission again.</p>
       <h3>What's stored there</h3>
-      <p>One file with the shows you follow (their feed addresses, and when you followed or unfollowed them), which episodes you've played and where you are in them, your bookmarks and their notes, your queue, and the app's settings. It's in your Google account, not on a server of mine.</p>
+      <p>One file with the shows you follow (their feed addresses, and when you followed or unfollowed them) and the folders you've put them in, any folder covers you've chosen, which episodes you've played and where you are in them, your bookmarks and their notes, your queue, and the app's settings. Your listening history and listening time stay on each device. It's in your Google account, not on a server of mine.</p>
       <h3>Your name, email address and photo</h3>
       <p>The app reads these from your Google account so Settings can show which account you're signed in with. They stay on your device.</p>
       <h3>How it's used</h3>
@@ -62,7 +65,7 @@
       <h3>Signing out and deleting</h3>
       <ul>
         <li>Sign out in Settings to remove GlassCast's access to your Google account. Your library stays on the device, and the copy in your Drive stays there for the next time you sign in.</li>
-        <li>To delete that copy, open Google Drive on the web, go to Settings, then Manage apps, find GlassCast, and choose Delete hidden app data.</li>
+        <li>To delete that copy, delete GlassCast library.json from your Google Drive. If you signed in with version 2.0 or earlier, an older copy may also be in the hidden folder: open Google Drive on the web, go to Settings, then Manage apps, find GlassCast, and choose Delete hidden app data.</li>
         <li>You can also remove GlassCast's access at any time from <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
       </ul>
     </section>
