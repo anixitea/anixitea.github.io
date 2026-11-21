@@ -3,66 +3,204 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GlassBook</title>
-  <meta name="description" content="GlassBook is a free audiobook player for Android. Point it at a folder and it finds your books, with their covers and chapters. No ads.">
-  <meta name="theme-color" content="#0e0d11">
-  <link rel="icon" href="/favicon.png">
+  <title>GlassBook: every book, in its own color</title>
+  <meta name="description" content="GlassBook is a free audiobook player for Android, for the audiobooks you already have as files. The player takes its colors from the cover. No ads, no subscription.">
+  <meta name="theme-color" content="#fbf5ee">
+  <link rel="icon" href="/glassbook/icon.webp">
+  <link rel="alternate" hreflang="en" href="https://anixitea.github.io/glassbook/">
+  <link rel="alternate" hreflang="ko" href="https://anixitea.github.io/glassbook/ko/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://anixitea.github.io/glassbook/">
-  <meta property="og:title" content="GlassBook">
-  <meta property="og:description" content="A free audiobook player for Android. No ads.">
-  <meta property="og:image" content="https://anixitea.github.io/glassbook/icon.webp">
+  <meta property="og:title" content="GlassBook: every book, in its own color">
+  <meta property="og:description" content="A free audiobook player for Android. No ads, no subscription.">
+  <meta property="og:image" content="https://anixitea.github.io/glassbook/og-en.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/glassbook/glassbook.css">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/glassbook/campaign.css">
 </head>
 <body>
-  <main class="page">
-    <a class="back" href="/">theglassmaker</a>
-
-    <div class="hero">
-      <img class="icon" src="/glassbook/icon.webp" alt="GlassBook's icon: white headphones over an open book, on orange">
-      <h1>GlassBook</h1>
-      <p class="lede">A free audiobook player for Android. Point it at a folder and it finds your books, with their covers and chapters. No ads.</p>
-      <div class="actions">
-        <a class="button primary" href="https://github.com/anixitea/GlassBook-for-Android">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
-          Get it on GitHub
-        </a>
-        <a class="button" href="/glassbook/privacy/">Privacy policy</a>
+  <header class="hero">
+    <img class="glow" src="/glassbook/shots/player.webp" alt="" aria-hidden="true">
+    <div class="wrap">
+      <div class="top">
+        <a class="brand" href="/"><img src="/glassbook/icon.webp" alt="">GlassBook</a>
+        <nav aria-label="Site">
+          <a class="wide-only" href="/glassbook/privacy/">Privacy</a>
+          <a href="/glassbook/ko/" lang="ko" hreflang="ko">한국어</a>
+        </nav>
+      </div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Every book,<br>in its own color.</h1>
+          <p class="lede">A free audiobook player for Android, for the audiobooks you already have as files. The player takes its colors from the cover of whatever you're listening to. No ads, no subscription.</p>
+          <div class="actions">
+            <a class="button primary" href="https://github.com/anixitea/GlassBook-for-Android/releases/latest">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+              Download for Android
+            </a>
+            <a class="button" href="#features">See what it does</a>
+          </div>
+        </div>
+        <div class="hero-phone">
+          <span class="bubble one" aria-hidden="true"></span>
+          <span class="bubble two slow" aria-hidden="true"></span>
+          <img class="phone" src="/glassbook/shots/player.webp" alt="GlassBook's player, colored by the cover of the book playing" width="800" height="1666">
+        </div>
       </div>
     </div>
+  </header>
 
-    <section class="panel">
-      <h2>Your books</h2>
-      <ul class="features">
-        <li>M4B, MP3, M4A, Opus, FLAC and the rest. A book split into many files becomes one book, with the chapters from the file.</li>
-        <li>A new book gets its cover, description and details from Audible's catalog by itself, when it's plainly the same book. You can pick another match or a cover from your photos.</li>
-        <li>Collections, the way you'd group apps on a home screen, and a grid you can pinch bigger or smaller.</li>
-      </ul>
+  <main class="wrap">
+    <section class="section" id="features">
+      <h2>Made for the books you own.</h2>
+      <p class="intro">I made GlassBook because I wanted a nice place to listen to the audiobooks I already have as files. Point it at a folder and it finds your books, with their covers and chapters.</p>
+      <div class="cards">
+        <article class="card">
+          <img class="glow" src="/glassbook/shots/listen.webp" alt="" aria-hidden="true">
+          <div class="text">
+            <h3>Pick up where you left off.</h3>
+            <p>What you're in the middle of, and a daily listening goal with your streak.</p>
+          </div>
+          <img class="phone" src="/glassbook/shots/listen.webp" alt="Listen Now, with the book you're in, Continue listening and today's goal" width="600" height="1249" loading="lazy">
+        </article>
+        <article class="card">
+          <img class="glow" src="/glassbook/shots/match.webp" alt="" aria-hidden="true">
+          <div class="text">
+            <h3>Covers, found for you.</h3>
+            <p>A new book gets its cover and details from Audible's catalog by itself. You can pick another match, or a photo of your own.</p>
+          </div>
+          <img class="phone" src="/glassbook/shots/match.webp" alt="Match online, with matches from Audible's catalog for a book" width="600" height="1249" loading="lazy">
+        </article>
+        <article class="card">
+          <img class="glow" src="/glassbook/shots/library.webp" alt="" aria-hidden="true">
+          <div class="text">
+            <h3>Your library, your way.</h3>
+            <p>Collections with covers from your photos, by title, author or genre, in a grid you can pinch bigger or smaller.</p>
+          </div>
+          <img class="phone" src="/glassbook/shots/library.webp" alt="The library, with a collection and books in a grid" width="600" height="1249" loading="lazy">
+        </article>
+        <article class="card">
+          <img class="glow" src="/glassbook/shots/book2.webp" alt="" aria-hidden="true">
+          <div class="text">
+            <h3>Everything about a book.</h3>
+            <p>Its description, narrators, length and chapters, tinted by its cover.</p>
+          </div>
+          <img class="phone" src="/glassbook/shots/book2.webp" alt="A book's page, tinted by its cover" width="600" height="1249" loading="lazy">
+        </article>
+        <article class="card">
+          <img class="glow" src="/glassbook/shots/discover.webp" alt="" aria-hidden="true">
+          <div class="text">
+            <h3>Find your next book.</h3>
+            <p>Picks based on what you're listening to, each with a sample to play.</p>
+          </div>
+          <img class="phone" src="/glassbook/shots/discover.webp" alt="Discover, with picks because you're listening to a book" width="600" height="1249" loading="lazy">
+        </article>
+        <article class="card">
+          <img class="glow" src="/glassbook/icon.webp" alt="" aria-hidden="true">
+          <div class="text">
+            <h3>Make it yours.</h3>
+            <p>Three looks: the original, Sea Glass and Glass. Light or dark, and fifteen app icons.</p>
+          </div>
+          <img class="phone" src="/glassbook/shots/settings.webp" alt="Settings, with the three looks in light and dark" width="600" height="1249" loading="lazy">
+        </article>
+      </div>
     </section>
 
-    <section class="panel">
-      <h2>Listening</h2>
-      <ul class="features">
-        <li>The player takes its colors from the cover of the book you're in.</li>
-        <li>Jump between chapters, change the speed from 0.5x to 2x, skip silences, boost quiet voices, and set a timer for some minutes or the end of the chapter.</li>
-        <li>Bookmarks, a daily listening goal with your streak, and a history of what you've played, day by day.</li>
-        <li>A home screen widget, Android Auto and the lock screen.</li>
-      </ul>
+    <section class="trio" id="listening">
+      <img class="glow" src="/glassbook/shots/speed.webp" alt="" aria-hidden="true">
+      <h2>Listen your way.</h2>
+      <p>Jump between chapters, change the speed from 0.5x to 2x, skip silences and boost quiet voices. The sleep timer can stop at the end of the chapter, and a shake restarts it. Bookmarks keep any moment you want to come back to.</p>
+      <div class="speeds" aria-hidden="true"><span>0.75x</span><span class="on">1x</span><span>1.25x</span><span>1.5x</span><span>2x</span></div>
+      <div class="trio-phones">
+        <img class="phone side" src="/glassbook/shots/speed.webp" alt="Speed and sound, with Skip silence and Boost voices" width="600" height="1249" loading="lazy">
+        <img class="phone" src="/glassbook/shots/player2.webp" alt="The player, in the colors of the cover" width="600" height="1249" loading="lazy">
+        <img class="phone side" src="/glassbook/shots/chapters.webp" alt="The list of a book's chapters" width="600" height="1249" loading="lazy">
+      </div>
     </section>
 
-    <section class="panel">
-      <h2>Your Google account, if you want it</h2>
-      <p>Sign in with Google and your library follows you to every phone you sign in on: where you are in each book, your bookmarks, your collections and your Want to Listen list. You can also keep the books themselves in your own Google Drive, in a GlassBook folder. On another phone they play straight away and download as they go.</p>
-      <p>It all stays in your own Drive. There's no GlassBook server. The <a href="/glassbook/privacy/">privacy policy</a> has the details.</p>
+    <section class="sync" id="google">
+      <img class="glow" src="/glassbook/shots/book.webp" alt="" aria-hidden="true">
+      <div>
+        <h2>Your library,<br>on every phone.</h2>
+        <p>Sign in with Google if you want to, and where you are in each book, your bookmarks, your collections and your Want to Listen list follow you to every phone you sign in on.</p>
+        <p>You can keep the books themselves in your own Google Drive too. On another phone they play straight away and download as they go.</p>
+        <p class="note">It all stays in your Drive, in a GlassBook folder. There's no GlassBook server.</p>
+      </div>
+      <div class="drive" aria-hidden="true">
+        <div class="drive-label">GOOGLE DRIVE</div>
+        <div class="drive-row">
+          <span class="drive-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 8.5a4.75 4.75 0 0 1-.5 9.5z"/><path d="M12 15v-5"/><path d="m9.5 12 2.5-2.5 2.5 2.5"/></svg></span>
+          <span class="drive-text"><strong>Keep books in Drive</strong><small>3 books to upload</small></span>
+          <span class="drive-switch"></span>
+        </div>
+        <div class="drive-row">
+          <span class="drive-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a15 15 0 0 1 20 0"/><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><path d="M12 19.5h.01"/></svg></span>
+          <span class="drive-text"><strong>Wi-Fi only</strong></span>
+          <span class="drive-switch"></span>
+        </div>
+        <div class="drive-book">
+          <img src="/glassbook/shots/cover.webp" alt="" width="48" height="48">
+          <span class="drive-text"><strong>The Divorce</strong><small>Uploading to Drive</small><span class="drive-bar"><span></span></span></span>
+        </div>
+      </div>
     </section>
 
-    <footer>
-      <a href="/glassbook/privacy/">Privacy</a><span class="dot">·</span><a href="https://github.com/anixitea/GlassBook-for-Android">GitHub</a><span class="dot">·</span><a href="https://buymeacoffee.com/theglassmaker">Buy me a coffee</a>
-    </footer>
+    <section class="free">
+      <img class="glow" src="/glassbook/icon.webp" alt="" aria-hidden="true">
+      <h2>Free. No ads.<br>No subscription.</h2>
+      <div class="columns">
+        <div>
+          <h3>Your data</h3>
+          <p>Your books and what you listen to stay on your phone, and nothing about them is sent to me. GlassBook only goes online to look books up in Audible's catalog and Open Library, to check GitHub for updates, and, if you sign in, to keep your library in your own Google Drive. The <a href="/glassbook/privacy/">privacy policy</a> has the details.</p>
+        </div>
+        <div>
+          <h3>Also in GlassBook</h3>
+          <p>M4B, MP3, M4A, Opus, FLAC and more, with a book in many files played as one. A listening history with your week, a Want to Listen list, a backup file for a new phone, a home screen widget, Android Auto, a layout for landscape and foldables, and English, Korean, German, Spanish and Dutch.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="install">
+      <span class="bubble one" aria-hidden="true"></span>
+      <span class="bubble two slow" aria-hidden="true"></span>
+      <h2>Get GlassBook.</h2>
+      <p class="intro">Download the APK and open it on your phone. The app checks for updates itself, so you only need to install it once.</p>
+      <div class="actions">
+        <a class="button primary" href="https://github.com/anixitea/GlassBook-for-Android/releases/latest">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>
+          Download for Android
+        </a>
+        <a class="button" href="https://buymeacoffee.com/theglassmaker">Buy me a coffee</a>
+      </div>
+      <a class="store-badge" href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.glassbook.app%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fanixitea%2FGlassBook-for-Android%22%2C%22author%22%3A%22anixitea%22%2C%22name%22%3A%22GlassBook%22%7D"><img src="/glasscast/obtainium.png" alt="Get it on Obtainium" width="161" height="48"></a>
+    </section>
   </main>
+
+  <footer class="wrap">
+    <a href="/glassbook/privacy/">Privacy</a><span class="dot">·</span><a href="https://github.com/anixitea/GlassBook-for-Android">GitHub</a><span class="dot">·</span><a href="/glassbook/ko/" lang="ko">한국어</a><span class="dot">·</span><a href="/">theglassmaker</a>
+  </footer>
+
+  <div class="mini" id="mini">
+    <div class="mini-shadow" aria-hidden="true"></div>
+    <div class="mini-bg" aria-hidden="true"></div>
+    <a class="mini-card" href="https://github.com/anixitea/GlassBook-for-Android/releases/latest" aria-label="Download GlassBook for Android">
+      <span class="mini-row">
+        <span class="mini-text">
+          <span class="mini-title latin">GlassBook</span>
+          <span class="mini-sub">A free audiobook player for Android</span>
+          <svg class="mini-wave" aria-hidden="true"><path class="played"/><line class="rest" y1="4" y2="4"/><circle class="dot" cy="4" r="1.3"/></svg>
+        </span>
+        <span class="mini-button" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg></span>
+      </span>
+    </a>
+    <img class="mini-art" src="/glassbook/icon.webp" alt="" width="48" height="48">
+    <svg class="mini-ring" aria-hidden="true"><path class="track"/><path class="arc"/></svg>
+    <button class="mini-bubble" type="button" aria-label="Show the download" hidden></button>
+  </div>
+  <script src="/glasscast/mini.js" defer></script>
 </body>
 </html>
