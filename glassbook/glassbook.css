@@ -1,0 +1,19 @@
+/* GlassBook's pages: the site's look, in GlassBook's orange rather than GlassCast's purple. */
+:root {
+  --glow: rgba(240, 118, 52, 0.28);
+  --accent: #ffa25c;
+  --accent-fill: #ec6a30;
+  --on-accent: #ffffff;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --glow: rgba(240, 118, 52, 0.15);
+    --accent: #c94f12;
+    --accent-fill: #e0601f;
+  }
+}
+
+.icon {
+  box-shadow: 0 18px 50px rgba(236, 106, 48, 0.38), 0 2px 0 rgba(255, 255, 255, 0.08) inset;
+}
