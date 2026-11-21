@@ -1,2 +1,2 @@
 # anixitea.github.io
-theglassmaker's site: GlassCast's home page and privacy policy
+theglassmaker's site: GlassCast's and GlassBook's home pages and privacy policies
